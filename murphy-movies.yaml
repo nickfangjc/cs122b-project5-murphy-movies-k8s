@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: murphy-movies
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: murphy-movies
+  template:
+    metadata:
+      labels:
+        app: murphy-movies
+    spec:
+      containers:
+        - name: murphy-movies-container
+          image: akarad158/xyz
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+      imagePullSecrets: # For pulling private Dockerhub images
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: murphy-movies-service
+spec:
+  selector:
+    app: murphy-movies
+  ports:
+    - name: http
+      port: 8080
+  type: ClusterIP
