@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: murphy-movies
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: murphy-movies
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: murphy-movies-container
-          image: akarad158/xyz
+          image: yinandanielzhou/cs122b-s24-p5:v2
           ports:
             - name: http
               containerPort: 8080
