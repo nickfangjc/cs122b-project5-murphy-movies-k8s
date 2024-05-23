@@ -26,5 +26,5 @@ helm install mysql --set auth.rootPassword=root,auth.database=murphymovies,auth.
 4. Run `kubectl get ingress` to see your list of ingresses.
 5. You should see an `ADDRESS` after a couple of minutes. You can then access the application on http://<AWS_ELB_URL>/cs122b-project5-murphy-movies.
 ![img.png](img.png)
-6. You can also test sticky sessions by inspecting cookies to find `stickounet` cookie.
+6. You can also test whether sticky sessions work by inspecting cookies to find `stickounet` cookie. This cookie is used for identifying which pod your request will be routed to.
 ![img_1.png](img_1.png)
