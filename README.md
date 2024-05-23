@@ -11,12 +11,13 @@ This repo contains kubernetes scripts to be executed in your Ubuntu instance aft
 ```
 helm install mysql --set auth.rootPassword=root,auth.database=murphymovies,auth.username=mytestuser,auth.password='My6$Password',secondary.persistence.enabled=true,secondary.persistence.size=2Gi,primary.persistence.enabled=true,primary.persistence.size=2Gi,architecture=replication,auth.replicationPassword=texera,secondary.replicaCount=1 oci://registry-1.docker.io/bitnamicharts/mysql
 ```
-3. Populate MySQL database => 
+Test by running `kubectl get pods`, both mysql pods should be in `RUNNING` state and `READY (1/1)`.
+4. Populate MySQL database => 
    1. Run `kubectl exec -it pod/mysql-primary-0 -- /bin/bash`.
    2. Run `mysql -u root -p` & enter password as `root`.
    3. Run the SQL scripts from [Murphy Movies repo](https://github.com/UCI-Chenli-teaching/cs122b-project5-murphy-movies?tab=readme-ov-file#prepare-the-database-murphymovies).
    4. Grant `mytestuser` privileges: `GRANT ALL PRIVILEGES ON * . * TO 'mytestuser'@'%';`
-4. Enable ingress in your AWS cluster.
+5. Enable ingress in your AWS cluster.
    1. Run the following to install ingress-nginx.
    ```
    helm upgrade --install ingress-nginx ingress-nginx \
@@ -25,7 +26,10 @@ helm install mysql --set auth.rootPassword=root,auth.database=murphymovies,auth.
    ```
 ## Steps to deploy scripts
 1. Clone the repo into your Ubuntu instance
-2. Run `kubectl apply -f murphy-movies.yaml`.
+2. Run `kubectl apply -f murphy-movies.yaml`. 
+   1. Test by running `kubectl get pods`, both murphy-movie pod should be in `RUNNING` state and `READY (1/1)`. 
+   2. If your pod is showing as `PENDING`, run `kubectl describe <POD_NAME>` and inspect the lifecycle of the pod to debug further. 
+   3. Run `kubectl logs <MURPHY_MOVIES_POD_NAME>`. If you see JDBC connection exceptions, you haven't configured MySQL properly. Check the username, password, user permissions for your MySQL user, database name. After fixing any errors, you run `kubectl delete -f murphy-movies.yaml `and repeat Step 2.
 3. Run `kubectl apply -f ingress.yaml`.
 4. Run `kubectl get ingress` to see your list of ingresses.
 5. You should see an `ADDRESS` after a couple of minutes. You can then access the application on http://<AWS_ELB_URL>/cs122b-project5-murphy-movies.
