@@ -2,7 +2,7 @@
 
 This repo contains kubernetes scripts to be executed in your Ubuntu instance after logging in as the kOps user.
 ## Pre-requisites
-1. Make sure you have a AWS Kubernetes cluster set up (follow Task 3.1 and 3.2 from Project 5 in your AWS Ubuntu instance).
+1. Make sure you have an AWS Kubernetes cluster set up (follow Task 3.1 and 3.2 from Project 5 in your AWS Ubuntu instance).
 2. Set up MySQL pods through the helm chart.
 ```
 helm install mysql --set auth.rootPassword=root,auth.database=murphymovies,auth.username=mytestuser,auth.password='My6$Password',secondary.persistence.enabled=true,secondary.persistence.size=2Gi,primary.persistence.enabled=true,primary.persistence.size=2Gi,architecture=replication,auth.replicationPassword=texera,secondary.replicaCount=1 oci://registry-1.docker.io/bitnamicharts/mysql
