@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: murphy-movies-container # Names the container within the pod as "murphy-movies-container".
-          image: yinandanielzhou/cs122b-s24-p5:v2 # Uses the Docker image "yinandanielzhou/cs122b-s24-p5:v2" for the container.
+          image: chenliteaching/cs122b-p5-murphy:v2 # Uses the Docker image "yinandanielzhou/cs122b-s24-p5:v2" for the container.
           ports:
             - name: http
               containerPort: 8080 # Exposes port 8080 of the container.
