@@ -9,7 +9,7 @@ This repo contains kubernetes scripts to be executed in your Ubuntu instance aft
     ```
 3. Set up MySQL pods through the helm chart.
 ```
-helm install mysql --set auth.rootPassword=root,auth.database=murphymovies,auth.username=mytestuser,auth.password='My6$Password',secondary.persistence.enabled=true,secondary.persistence.size=2Gi,primary.persistence.enabled=true,primary.persistence.size=2Gi,architecture=replication,auth.replicationPassword=texera,secondary.replicaCount=1 oci://registry-1.docker.io/bitnamicharts/mysql
+helm install mysql --set auth.rootPassword=root,auth.database=murphymovies,auth.username=murphyuser,auth.password='My7$Password',secondary.persistence.enabled=true,secondary.persistence.size=2Gi,primary.persistence.enabled=true,primary.persistence.size=2Gi,architecture=replication,auth.replicationPassword=texera,secondary.replicaCount=1 oci://registry-1.docker.io/bitnamicharts/mysql
 ```
 Test by running `kubectl get pods`, both mysql pods should be in `RUNNING` state and `READY (1/1)`.
 4. Populate MySQL database => 
