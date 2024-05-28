@@ -2,7 +2,7 @@
 
 This repo contains kubernetes scripts to be executed in your Ubuntu instance after logging in as the kOps user.
 ## Pre-requisites
-1. Make sure you have an AWS Kubernetes cluster set up (follow Task 3.1 and 3.2 from Project 5 in your AWS Ubuntu instance).
+1. Make sure you have an AWS Kubernetes cluster set up (follow Task 2.1 and 2.2 from Project 5 in your AWS Ubuntu instance).
 2. Create a `regcred` secret which contains your Dockerhub credentials. Replace variables with your info.
    ```
     kubectl create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=<YOUR_DOCKER_USERNAME> --docker-password=<YOUR DOCKER PASSWORD> --docker-email=<YOUR DOCKER EMAIL>
