@@ -16,7 +16,7 @@ Test by running `kubectl get pods`, both mysql pods should be in `RUNNING` state
    1. Run `kubectl exec -it pod/mysql-primary-0 -- /bin/bash`.
    2. Run `mysql -u root -p` & enter password as `root`.
    3. Run the SQL scripts from [Murphy Movies repo](https://github.com/UCI-Chenli-teaching/cs122b-project5-murphy-movies?tab=readme-ov-file#prepare-the-database-murphymovies).
-   4. Grant `mytestuser` privileges: `GRANT ALL PRIVILEGES ON * . * TO 'mytestuser'@'%';`
+   4. Grant `murphyuser` privileges: `GRANT ALL PRIVILEGES ON * . * TO 'murphyuser'@'%';`
 5. Enable ingress in your AWS cluster.
    1. Run the following to install ingress-nginx.
    ```
